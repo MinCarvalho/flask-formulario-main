@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for
 from api.app import app, db
-from api.models import Questionario, QuestionarioExterno
-from api.form import QuestionForm, QuestionExternoForm
+from api.models import Questionario, QuestionarioExterno, Teste
+from api.form import QuestionForm, QuestionExternoForm, TesteForm
 
 
 with app.app_context():
@@ -11,7 +11,9 @@ with app.app_context():
 def index():
     questionarios = Questionario.query.all()
     questionariosExternos = QuestionarioExterno.query.all()
-    return render_template('index.html', questionarios=questionarios, questionariosExternos=questionariosExternos)
+    teste = Teste.query.all()
+
+    return render_template('index.html', questionarios=questionarios, questionariosExternos=questionariosExternos, teste=teste)
 
 # DETALHE FORMULARIO INTERNO
 @app.route('/formulario/<int:id>')
@@ -24,6 +26,13 @@ def formulario_detalhes(id):
 def form_externo_detalhes(id):
     questionarioExterno = QuestionarioExterno.query.get(id)
     return render_template('form_externo_detalhes.html', questionarioExterno=questionarioExterno)
+
+# DETALHE FORMULARIO TESTE
+@app.route('/teste_detalhes/<int:id>')
+def teste_detalhes(id):
+    teste = Teste.query.get(id)
+    return render_template('teste_detalhes.html', teste=teste)
+
 
 
 #ADICIONAR FORMULARIO
@@ -80,6 +89,23 @@ def add_form_externo():
         return redirect(url_for('index'))
     return render_template('add_form_externo.html', form=form)
 
+@app.route('/add_teste', methods=['GET', 'POST'])
+def add_teste():
+    form = TesteForm()
+    if form.validate_on_submit():
+        teste = Teste(  c_teste=form.c_teste.data, 
+                        obj_teste=form.obj_teste.data,  
+                        p_condicoes=form.p_condicoes.data,  
+                        passos=form.passos.data,  
+                        result=form.result.data,
+                                
+                        )
+        db.session.add(teste)
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template('add_teste.html', form=form)
+
+
 
 #EDITAR
 @app.route('/edit_formulario/<int:id>', methods=['GET', 'POST'])
@@ -107,6 +133,18 @@ def edit_form_externo(id):
 
     return render_template('edit_form_externo.html', form=form, questionarioExterno=questionarioExterno)
 
+@app.route('/edit_teste/<int:id>', methods=['GET', 'POST'])
+def edit_teste(id):
+    teste = Teste.query.get(id)
+    form = TesteForm(obj=teste)
+
+    if form.validate_on_submit():
+        form.populate_obj(teste)
+        db.session.commit()
+        return redirect(url_for('index'))
+
+    return render_template('edit_teste.html', form=form, teste=teste)
+
 
 #DELETAR
 @app.route('/delete_formulario/<int:id>', methods=['GET', 'POST'])
@@ -122,6 +160,14 @@ def delete_form_externo(id):
     db.session.delete(questionarioExterno)
     db.session.commit()
     return redirect(url_for('index'))
+
+@app.route('/delete_teste/<int:id>', methods=['GET', 'POST'])
+def delete_teste(id):   
+    teste = Teste.query.get(id)
+    db.session.delete(teste)
+    db.session.commit()
+    return redirect(url_for('index'))
+   
    
 
 

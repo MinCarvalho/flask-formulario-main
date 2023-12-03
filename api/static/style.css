@@ -132,6 +132,15 @@ form textarea {
     margin-top: 10px;
 }
 
+.form-test textarea{
+    width: 780px;
+    height: 200px;
+    background-color: #ffffff6e;
+    color: rgb(0, 0, 0);
+    margin-top: 10px;
+
+}
+
 form input {
     width: 762px;
     align-self: flex-start;  

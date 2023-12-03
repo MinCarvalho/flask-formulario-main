@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Detalhes do Questionário</title>
+</head>
+<body>
+
+    <br>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            
+        </ul>
+    </nav>
+    
+    <h1>DETALHES</h1>
+
+    <div class="container">
+
+        <div class="form-group">
+            <div class="form-detalhe">
+                <label for="c_teste">Caso de Teste:</label>
+                <p>{{ teste.c_teste|safe }}</p>
+            
+                <label for="obj_teste">Objetivo:</label>
+                <p>{{ teste.obj_teste|safe }}</p>
+            
+                <label for="p_condicoes">Pré-condições:</label>
+                <p>{{ teste.p_condicoes|safe }}</p>
+            
+                <label for="passos">Passos:</label>
+                <p>{{ teste.passos|safe }}</p>
+                
+                <label for="result">Resultados Esperados:</label>
+                <p>{{ teste.result|safe }}</p>
+            </div>
+        </div>
+        
+    </div>
+    <br><br><br>
+</body>
+</html>

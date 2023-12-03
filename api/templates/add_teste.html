@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Formulário</title>
+    <!-- Adicione os links para os estilos CSS se desejar -->
+</head>
+<body> 
+    <br>
+    <header>  
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Formulario</h1>
+        <form class="form-test" method="POST" action="{{ url_for('add_teste') }}">
+    
+            {{ form.csrf_token }}
+            {{ form.hidden_tag() }}
+            
+            
+            <div class="form-test">
+                {{ form.c_teste.label }} {{ form.c_teste|safe }} <br><br>
+                {{ form.obj_teste.label }} {{ form.obj_teste|safe }} <br><br>
+                {{ form.p_condicoes.label }} {{ form.p_condicoes|safe }}<br><br>
+                {{ form.passos.label }} {{ form.passos|safe }}<br><br>
+                {{ form.result.label }} {{ form.result|safe }}<br><br>
+                
+                
+        
+            
+            <div class="form-group">
+                   <center> <button type="submit" class="btn btn-primary">Enviar</button></center>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    
+
+    <br><br><br><br>
+</body>
+</html>

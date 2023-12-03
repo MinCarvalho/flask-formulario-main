@@ -41,3 +41,17 @@ class QuestionarioExterno(db.Model):
     qexterna7 = db.Column(db.String)
     pexterna8 = db.Column(db.String) #Pergunta
     qexterna8 = db.Column(db.String)
+
+class Teste(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+
+    c_teste = db.Column(db.String)
+    obj_teste = db.Column(db.String)
+
+    p_condicoes = db.Column(db.String)
+    
+    passos = db.Column(db.String)
+
+    result = db.Column(db.String)
+
+    

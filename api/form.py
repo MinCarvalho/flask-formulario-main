@@ -52,3 +52,11 @@ class QuestionExternoForm(FlaskForm):
     qexterna7 = TextAreaField( validators=[InputRequired()])
     pexterna8 = StringField("",validators=[InputRequired()])
     qexterna8 = TextAreaField( validators=[InputRequired()])
+
+
+class TesteForm(FlaskForm):
+    c_teste = StringField("Caso de Teste:", validators=[InputRequired()])
+    obj_teste = StringField("Objetivo:", validators=[InputRequired()])
+    p_condicoes = TextAreaField("Pré-condições:", validators=[InputRequired()])
+    passos = TextAreaField("Passos:", validators=[InputRequired()])
+    result = TextAreaField("Resultados Esperados:", validators=[InputRequired()])

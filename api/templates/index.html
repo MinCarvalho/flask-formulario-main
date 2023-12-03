@@ -11,8 +11,9 @@
     <nav>
         <ul>
             <li><a href="{{ url_for('index') }}">Home</a></li>
-            <li><a href="{{ url_for('add_formulario') }}">Formulario Interno</a></li>
-            <li><a href="{{ url_for('add_form_externo') }}">Formulario Externo</a></li>
+            <li><a href="{{ url_for('add_formulario') }}">Interno</a></li>
+            <li><a href="{{ url_for('add_form_externo') }}">Externo</a></li>
+            <li><a href="{{ url_for('add_teste') }}">Teste</a></li>
         </ul>
     </nav>
     
@@ -67,6 +68,38 @@
                             <div class="edit-delete-container">
                                 <a class="b1edit" href="{{ url_for('edit_form_externo', id=questionarioExterno.id) }}">Editar</a>
                                 <a class="b2delete" href="{{ url_for('delete_form_externo', id=questionarioExterno.id) }}">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <br><br><br>
+    <div class="container">
+        <br><br><br>
+        <h2>Caso de Teste</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Visualizar</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for teste in teste %}
+                    <tr>
+                        <td>{{ teste.c_teste }}</td>
+                        <td><a class="b3view" href="{{ url_for('teste_detalhes', id=teste.id) }}">Ver detalhes</a></td>
+                        
+                        <td class="actions">
+                            <div class="edit-delete-container">
+                                
+                                <a class="b1edit" href="{{ url_for('edit_teste', id=teste.id) }}">Editar</a>
+
+                                <a class="b2delete" href="{{ url_for('delete_teste', id=teste.id) }}">Excluir</a>
                             </div>
                         </td>
                     </tr>
