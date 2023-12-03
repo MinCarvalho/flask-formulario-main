@@ -4,6 +4,8 @@ from api.models import Questionario, QuestionarioExterno, Teste
 from api.form import QuestionForm, QuestionExternoForm, TesteForm
 
 
+with app.app_context():
+    db.create_all()
 
 @app.route('/')
 def index():
@@ -172,7 +174,5 @@ def delete_teste(id):
 
 
 if __name__ == '__main__':
-   with app.app_context():
-    db.create_all()
-
+   
     app.run(debug=True)
